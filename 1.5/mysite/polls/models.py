@@ -19,4 +19,11 @@ class Choice(models.Model):
 		return self.choice_text
 
 ###################
-admin.site.register(Poll)
+class PollAdmin(admin.ModelAdmin):
+	#fields = ['pub_date', 'question']
+	fieldsets = [
+		(None,			{'fields': ['question']}),
+		('Date info',	{'fields': ['pub_date'], 'classes': ['collapse']}),
+	]
+
+admin.site.register(Poll, PollAdmin)
