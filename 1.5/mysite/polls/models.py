@@ -19,11 +19,16 @@ class Choice(models.Model):
 		return self.choice_text
 
 ###################
+class ChoiceInline(admin.TabularInline):
+	model = Choice
+	extra = 3
+
 class PollAdmin(admin.ModelAdmin):
 	#fields = ['pub_date', 'question']
 	fieldsets = [
 		(None,			{'fields': ['question']}),
 		('Date info',	{'fields': ['pub_date'], 'classes': ['collapse']}),
 	]
+	inlines = [ChoiceInline]
 
 admin.site.register(Poll, PollAdmin)
