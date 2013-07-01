@@ -36,5 +36,6 @@ class PollAdmin(admin.ModelAdmin):
 	inlines = [ChoiceInline]
 	list_filter = ['pub_date']
 	search_fields = ['question']
+	date_hierarchy = 'pub_date'
 
 admin.site.register(Poll, PollAdmin)
