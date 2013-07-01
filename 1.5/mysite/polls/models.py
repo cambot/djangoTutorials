@@ -8,6 +8,7 @@ class Poll(models.Model):
 	pub_date = models.DateTimeField('date published')
 	def was_published_recently(self):
 		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+	was_published_recently.admin_order_field = 'pub_date'  # allows calculated field to be sortable in admin screen.
 	def __unicode__(self):
 		return self.question
 
