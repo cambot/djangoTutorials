@@ -24,6 +24,7 @@ class ChoiceInline(admin.TabularInline):
 	extra = 3
 
 class PollAdmin(admin.ModelAdmin):
+	list_display = ('question', 'pub_date', 'was_published_recently')
 	#fields = ['pub_date', 'question']
 	fieldsets = [
 		(None,			{'fields': ['question']}),
