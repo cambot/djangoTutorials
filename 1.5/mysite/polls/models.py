@@ -10,6 +10,7 @@ class Poll(models.Model):
 		return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 	was_published_recently.admin_order_field = 'pub_date'  # allows calculated field to be sortable in admin screen.
 	was_published_recently.boolean = True   # green check mark
+	was_published_recently.short_description = "Published recently?"
 	def __unicode__(self):
 		return self.question
 
