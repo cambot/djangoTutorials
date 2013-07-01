@@ -35,5 +35,6 @@ class PollAdmin(admin.ModelAdmin):
 	]
 	inlines = [ChoiceInline]
 	list_filter = ['pub_date']
+	search_fields = ['question']
 
 admin.site.register(Poll, PollAdmin)
