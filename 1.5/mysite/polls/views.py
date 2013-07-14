@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 #from django.template import RequestContext, loader
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from polls.models import Poll
 
@@ -16,7 +16,8 @@ def index(request):
 	return render(request, 'polls/index.html', context)
 
 def detail(request, poll_id):
-	return HttpResponse("details of poll %s" % poll_id)
+	poll = get_object_or_404(Poll, pk=poll_id)
+	return render(request, 'polls/detail.html', {'poll': poll})
 
 def results(request, poll_id):
 	return HttpResponse("results for poll %s" % poll_id)
