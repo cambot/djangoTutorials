@@ -14,24 +14,16 @@ class IndexView(generic.ListView):
         """Return the last five published polls."""
         return Poll.objects.order_by('-pub_date')[:5]
 
-def index(request):
-	latest_poll_list = Poll.objects.order_by('-pub_date')[:5]
-	#template = loader.get_template('polls/index.html')
-	#context = RequestContext(request, {
-	#	'latest_poll_list': latest_poll_list,
-	#})
-	#return HttpResponse(template.render(context))
-	#
-	context = {'latest_poll_list': latest_poll_list	}
-	return render(request, 'polls/index.html', context)
 
-def detail(request, poll_id):
-	poll = get_object_or_404(Poll, pk=poll_id)
-	return render(request, 'polls/detail.html', {'poll': poll})
+class DetailView(generic.DetailView):
+    model = Poll
+    template_name = 'polls/detail.html'
 
-def results(request, poll_id):
-    poll = get_object_or_404(Poll, pk=poll_id)
-    return render(request, 'polls/results.html', {'poll': poll})
+
+class ResultsView(generic.DetailView):
+    model = Poll
+    template_name = 'polls/results.html'
+
 
 def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
