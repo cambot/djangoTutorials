@@ -6,8 +6,8 @@ from django.views import generic
 from polls.models import Poll, Choice
 
 class IndexView(generic.ListView):
-    template_name = 'polls/index.html'
-    context_object_name = 'latest_poll_list'
+    template_name = 'polls/index.html'   # default template: <app name>/<model name>_list.html
+    context_object_name = 'latest_poll_list'   # default variable: poll_list
 
     def get_queryset(self):
         """Return the last five published polls."""
@@ -16,7 +16,7 @@ class IndexView(generic.ListView):
 
 class DetailView(generic.DetailView):
     model = Poll
-    template_name = 'polls/detail.html'
+    template_name = 'polls/detail.html'   # default template: <app name>/<model name>_detail.html
 
 
 class ResultsView(generic.DetailView):
