@@ -50,4 +50,12 @@ class PollViewTests(TestCase):
 		self.assertContains(response, "No polls are available.", status_code=200)
 		self.assertQuerysetEqual(response.context['latest_poll_list'], [])
 
+	def test_index_view_with_a_future_and_past_poll(self):
+		create_poll(question="Past poll.", days=-30)
+		create_poll(question="Future poll.", days=30)
+		response = self.client.get(reverse('polls:index'))
+		self.assertQuerysetEqual(
+			response.context['latest_poll_list'],
+			['<Poll: Past poll.>']
+		)
 
