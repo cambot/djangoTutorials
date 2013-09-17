@@ -23,14 +23,15 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Poll
     template_name = 'polls/detail.html'   # default template: <app name>/<model name>_detail.html
-    
-	def get_queryset(self):
-        return Poll.objects.filter(pub_date__lte=timezone.now())
+    def get_queryset(self):
+        return Poll.objects.filter(
+			pub_date__lte=timezone.now()
+		)
 
 
 class ResultsView(generic.DetailView):
-    model = Poll
-    template_name = 'polls/results.html'
+	model = Poll
+	template_name = 'polls/results.html'
 
 
 def vote(request, poll_id):
