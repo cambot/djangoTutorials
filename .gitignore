@@ -1,2 +1,8 @@
+# Python #
+##########
 *.pyc
+
+# Databases #
+#############
 *.db
+*.sqlite3
